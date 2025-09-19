@@ -17,16 +17,16 @@ public class GatewayRoutesConfig {
     @Bean
     public RouteLocator routeLocator(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("identity_service", r -> r.path("/auth/**", "/gateway/auth/**")
+                .route("identity-service", r -> r.path("/auth/**")
                         .uri("lb://identity-service"))
 
-                .route("user_service", r -> r.path("/api/v1/users/**")
+                .route("user-service", r -> r.path("/api/v1/users/**")
                         .filters(f -> f.requestRateLimiter(config -> {
                             config.setRateLimiter(redisLimiterConfig.redisRateLimiter());
                         }))
                         .uri("lb://user-service"))
 
-                .route("ticket_service", r -> r.path("/api/v1/tickets/**")
+                .route("ticket-service", r -> r.path("/api/v1/tickets/**")
                         .filters(f -> f.requestRateLimiter(config -> {
                             config.setRateLimiter(redisLimiterConfig.redisRateLimiter());
                         }))
