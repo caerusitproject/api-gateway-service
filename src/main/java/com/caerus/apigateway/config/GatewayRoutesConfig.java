@@ -26,7 +26,7 @@ public class GatewayRoutesConfig {
                         }))
                         .uri("lb://user-service"))
 
-                .route("ticket-service", r -> r.path("/api/v1/tickets/**")
+                .route("ticket-service", r -> r.path("/api/v1/tickets/**", "/api/v1/files/**")
                         .filters(f -> f.requestRateLimiter(config -> {
                             config.setRateLimiter(redisLimiterConfig.redisRateLimiter());
                         }))

@@ -32,6 +32,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(WebClientResponseException.class)
     public ResponseEntity<String> handleWebClientException(WebClientResponseException ex) {
+        log.error("Webclient error: {}", ex.getMessage());
         return ResponseEntity
                 .status(ex.getStatusCode())
                 .body(ex.getResponseBodyAsString());
